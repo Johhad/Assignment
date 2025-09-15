@@ -15,7 +15,7 @@ st.write("# Welcome to PROHI Dashboard! 👋")
 
 st.markdown(
 """
-    ## Aims
+    ## Aimsss
 
     After completing the course the student should be able to:
     - explain basic project management methods
