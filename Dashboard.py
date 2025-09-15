@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="PROHI Dashboard!!!, ffs",
+    page_title="PROHI omg Dashboard!",
     page_icon="👋",
 )
 
@@ -15,7 +15,7 @@ st.write("# Welcome to PROHI Dashboard! 👋")
 
 st.markdown(
 """
-    ## Aimsss
+    ## Aims
 
     After completing the course the student should be able to:
     - explain basic project management methods
