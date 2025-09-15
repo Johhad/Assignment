@@ -1,8 +1,8 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title=("PROHI omggggg Dashboard!"),
-    page_icon=("👋"),
+    page_title=("Assignment Dashboard"),
+    page_icon=("📊"),
 )
 
 # Sidebar configuration
@@ -11,7 +11,7 @@ st.sidebar.success("Select a tab above.")
 
 # # Page information
 
-st.write("# Welcome to PROHI Dashboard! 👋")
+st.write("# Welcome to my dashboard for Assignment 2 👋")
 
 st.markdown(
 """
