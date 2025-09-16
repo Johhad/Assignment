@@ -41,7 +41,7 @@ df_display["Stroke"] = df_display["Stroke"].map({0: "No", 1: "Yes"})
 
 #The full dataset
 st.subheader("Full Synthetic Dataset")
-st.dataframe(df, height=300)
+st.dataframe(df_display, height=300)
 
 #The results in a chart
 colors = {"Male":"blue","Female":"red"}
@@ -62,6 +62,6 @@ fig.update_traces(texttemplate="%{text:.1f}%")
 st.plotly_chart(fig, use_container_width=True)
 
 #The final result
-max_risk = risk.loc[risk["stroke"].idxmax()]
+max_risk = risk.loc[risk["Stroke"].idxmax()]
 st.subheader("Final Result")
-st.info(f"Highest stroke risk: {max_risk['gender']} ({max_risk['stroke_percent']:.1f}%)")
+st.info(f"Highest stroke risk: {max_risk['Gender']} ({max_risk['stroke_percent']:.1f}%)")
