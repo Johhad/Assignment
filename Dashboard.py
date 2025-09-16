@@ -9,33 +9,36 @@ st.set_page_config(
 st.sidebar.image("./assets/project-logo.jpg",)
 st.sidebar.success("Select a tab above.")
 
-# The main page
-
-
 # # Page information
 
 st.write("# Welcome to my dashboard for Assignment 2 👋")
 
 st.markdown(
 """
-This is an example dashboard on risk management of having a stroke. This Dashboard uses a synthetic database.
+This is dashboard shows the probability of stroke between genders using a synthetic data set!
 """
 )
 import pandas as pd
 import numpy as np
+import plotly.express as px
 
-np.random.seed(42) #Seed in 42 to make it reproducable
-n = 500
+st.title("♂️ Stroke Risk by Gender ♀️")
+
+# Synthetic data set ans usign 42 for reproducability
+np.random.seed(42)
 df = pd.DataFrame({
-    "gender": np.random.choice(["Male","Female"], n),
-    "stroke": np.random.binomial(1, 0.1, n) #Makes it random
+    "gender": np.random.choice(["Male","Female"], 500),
+    "stroke": np.random.binomial(1, 0.1, 500)
 })
 
-#Calculate stroke percentage by gender
-risk = df.groupby("gender")["stroke"].mean() * 100
+# Compute stroke percentage
+risk = df.groupby("gender")["stroke"].mean().reset_index()
+risk["stroke"] *= 100  #Convert to percent
 
-#Show bar chart
-st.bar_chart(risk)
+#The actual plot
+fig = px.bar(risk, x="gender", y="stroke", color="gender",
+             color_discrete_map={"Male":"blue","Female":"red"},
+             text=risk["stroke"].round(1))
+fig.update_layout(yaxis_title="Stroke Risk (%)", showlegend=False)
 
-#Show table
-st.dataframe(risk.round(1))
+st.plotly_chart(fig, use_container_width=True)
