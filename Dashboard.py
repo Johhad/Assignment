@@ -18,45 +18,43 @@ st.write("# Welcome to my dashboard for Assignment 2 👋")
 
 st.markdown(
 """
-    ## Aims
-
-    After completing the course the student should be able to:
-    - explain basic project management methods
-    - be able to account for success factors in Health Informatics projects
-    - understand basic methods and tools in the field of data science and machine learning
-    - explain process models for data mining projects
-    - explain the difference between rule-based methods and machine learning methods
-    - apply basic project management methods
-    - work in an international multidisciplinary project group
-    - independently lead and implement a limited project in health informatics - document the steps in the design of a prototype for a health informatics project
-    - apply the steps in a process model for data mining projects
-    - apply methods from the field of text mining on different types of health informatics problems
-    - explain and argue for their positions regarding the implementation of a health informatics project
-    - explain how to work with sensitive health information in a safe and ethical way.
-
+This is an example dashboard on risk management of having a stroke. This Dashboard uses a synthetic database.
 """
 )
-
-# You can also add text right into the web as long comments (""")
-"""
-The final project aims to apply data science concepts and skills on a 
-medical case study that you and your team select from a public data source.
-The project assumes that you bring the technical Python skills from 
-previous courses (*DSHI*: Data Science for Health Informatics), as well as 
-the analytical skills to argue how and why specific techniques could
-enhance the problem domain related to the selected dataset.
-"""
-
-### UNCOMMENT THE CODE BELOW TO SEE EXAMPLE OF INPUT WIDGETS
-
-# # DATAFRAME MANAGEMENT
+import pandas as pd
 import numpy as np
 
-dataframe = np.random.randn(10, 20)
-st.dataframe(dataframe)
+#Set to 42 to be able to reproduce
+np.random.seed(42)
 
-# # Add a slider to the sidebar:
-add_slider = st.slider(
-    'Select a range of values',
-    0.0, 100.0, (25.0, 75.0)
+#Number of "recorded" data
+n = 500  
+
+#My Synthetic database and its features
+data = {
+    "patient_id": range(1, n+1),
+    "age": np.random.randint(18, 90, n),
+    "gender": np.random.choice(["Male", "Female"], n),
+    "hypertension": np.random.choice([0, 1], n, p=[0.8, 0.2]),
+    "heart_disease": np.random.choice([0, 1], n, p=[0.9, 0.1]),
+    "smoking_status": np.random.choice(["never", "formerly", "currently"], n, p=[0.5, 0.3, 0.2]),
+    "bmi": np.round(np.random.normal(27, 5, n), 1),
+    "avg_glucose_level": np.round(np.random.normal(100, 30, n), 1),
+}
+
+df = pd.DataFrame(data)
+
+#Calculates the probability
+prob_stroke = (
+    0.01
+    + 0.02 * df["hypertension"]
+    + 0.03 * df["heart_disease"]
+    + 0.02 * (df["smoking_status"] == "currently")
+    + 0.01 * (df["age"] > 60)
 )
+
+df["stroke"] = np.random.binomial(1, np.clip(prob_stroke, 0, 1))
+
+print(df.head())
+
+#Showing the data
