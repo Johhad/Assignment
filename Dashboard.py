@@ -43,6 +43,15 @@ df_display["Stroke"] = df_display["Stroke"].map({0: "No", 1: "Yes"})
 st.subheader("Full Synthetic Dataset")
 st.dataframe(df_display, height=300)
 
+# Widget 1: Gives the user the ability to scroll through both or one gender at a time
+gender = st.radio(
+    "Choose Gender",
+    ["Both", "Male", "Female"],
+    index=None,
+)
+
+st.write("You selected:", gender)
+
 #The results in a chart
 colors = {"Male":"blue","Female":"red"}
 fig = px.bar(
