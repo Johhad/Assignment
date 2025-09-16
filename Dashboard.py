@@ -8,7 +8,7 @@ st.set_page_config(
 # Sidebar configuration
 st.sidebar.image("./assets/project-logo.jpg",)
 #Widget 1: Adding a button that would take the user to the 2nd page "About"
-st.sidebar.button("About")
+st.sidebar.button(" About the Dashboard 💡 ")
 
 # # Page information
 
