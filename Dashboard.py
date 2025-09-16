@@ -24,27 +24,38 @@ import plotly.express as px
 
 st.title("♂️ Stroke Risk by Gender ♀️")
 
-# Synthetic data set ans usign 42 for reproducability
+import plotly.express as px
+
+st.title("Stroke Risk by Gender")
+
+#Synthetic data set
 np.random.seed(42)
 df = pd.DataFrame({
     "Gender": np.random.choice(["Male","Female"], 500),
     "Stroke": np.random.binomial(1, 0.1, 500)
 })
 
-# Compute stroke percentage
-risk = df.groupby("Gender")["Stroke"].mean().reset_index()
-risk["Stroke"] *= 100
+#Calculating the stroke risk between the genders
+risk = df.groupby("Gender")["Stroke"].mean().reset_index()  # keep 0-1
 
-#The actual plot
+#Shows teh data table
+st.subheader("Stroke Risk Data")
+st.dataframe(risk.assign(stroke_percent=(risk["Stroke"]*100).round(1)))
+
+#The chart
+colors = {"Male":"blue","Female":"red"}
 fig = px.bar(risk, x="Gender", y="Stroke", color="Gender",
-             color_discrete_map={"Male":"blue","Female":"red"},
-             text=risk["Stroke"].round(1))
-
+             color_discrete_map=colors,
+             text=risk["Stroke"].round(3))
 fig.update_layout(
     yaxis_title="Stroke Risk (%)",
+    yaxis_tickformat="%",
     showlegend=False
 )
-
-fig.update_traces(texttemplate="%{text:.1f}%")  #Adds % on top of bars, for more clarity
-
+fig.update_traces(texttemplate="%{text:.1f}%")
 st.plotly_chart(fig, use_container_width=True)
+
+#The final results
+max_risk = risk.loc[risk["Stroke"].idxmax()]
+st.subheader("Final Result")
+st.info(f"Highest stroke risk: {max_risk['Gender']} ({max_risk['Stroke']*100:.1f}%)")
