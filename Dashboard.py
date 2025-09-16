@@ -9,6 +9,9 @@ st.set_page_config(
 st.sidebar.image("./assets/project-logo.jpg",)
 st.sidebar.success("Select a tab above.")
 
+st.page_link("Dashboard.py", label="Home", icon="🏠")
+st.page_link("About.py", label="Page 1", icon="1️⃣")
+
 # # Page information
 
 st.write("# Welcome to my dashboard for Assignment 2 👋")
