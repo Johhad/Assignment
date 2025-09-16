@@ -33,7 +33,7 @@ df = pd.DataFrame({
 
 # Compute stroke percentage
 risk = df.groupby("Gender")["Stroke"].mean().reset_index()
-risk["stroke"] *= 100
+risk["Stroke"] *= 100
 
 #The actual plot
 fig = px.bar(risk, x="Gender", y="Stroke", color="Gender",
