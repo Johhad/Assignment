@@ -11,21 +11,19 @@ st.sidebar.success("Select a tab above.")
 
 # The main page
 st.set_page_config(page_title="📊 Dashboard", page_icon="📊")
-
 st.title("📊 Dashboard")
 
-# Page navigation
-st.page_link("Dashboard.py", label="🏠 Dashboard")
+# Link to About page
 st.page_link("pages/About.py", label="ℹ️ About")
 
 #The 2nd page
 st.set_page_config(page_title="ℹ️ About", page_icon="ℹ️")
 
+st.set_page_config(page_title="ℹ️ About", page_icon="ℹ️")
 st.title("ℹ️ About Page")
 
-# Page navigation
+# Link back to Dashboard
 st.page_link("Dashboard.py", label="🏠 Dashboard")
-st.page_link("pages/About.py", label="ℹ️ About")
 
 # # Page information
 
