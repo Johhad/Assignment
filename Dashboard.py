@@ -10,17 +10,7 @@ st.sidebar.image("./assets/project-logo.jpg",)
 st.sidebar.success("Select a tab above.")
 
 # The main page
-st.set_page_config(page_title="Dashboard", page_icon="📊")
 
-page = st.sidebar.radio("Navigation", ["Dashboard", "About"])
-
-if page == "Dashboard":
-    st.title("📊 Dashboard")
-    st.write("Dashboard content here...")
-
-elif page == "About":
-    st.title("ℹ️ About")
-    st.write("About content here...")
 
 # # Page information
 
