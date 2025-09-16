@@ -9,8 +9,23 @@ st.set_page_config(
 st.sidebar.image("./assets/project-logo.jpg",)
 st.sidebar.success("Select a tab above.")
 
-st.page_link("Dashboard.py", label="Home", icon="🏠")
-st.page_link("About.py", label="Page 1", icon="1️⃣")
+# The main page
+st.set_page_config(page_title="📊 Dashboard", page_icon="📊")
+
+st.title("📊 Dashboard")
+
+# Page navigation
+st.page_link("Dashboard.py", label="🏠 Dashboard")
+st.page_link("pages/About.py", label="ℹ️ About")
+
+#The 2nd page
+st.set_page_config(page_title="ℹ️ About", page_icon="ℹ️")
+
+st.title("ℹ️ About Page")
+
+# Page navigation
+st.page_link("Dashboard.py", label="🏠 Dashboard")
+st.page_link("pages/About.py", label="ℹ️ About")
 
 # # Page information
 
