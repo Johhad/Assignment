@@ -10,20 +10,17 @@ st.sidebar.image("./assets/project-logo.jpg",)
 st.sidebar.success("Select a tab above.")
 
 # The main page
-st.set_page_config(page_title="📊 Dashboard", page_icon="📊")
-st.title("📊 Dashboard")
+st.set_page_config(page_title="Dashboard", page_icon="📊")
 
-# Link to About page
-st.page_link("pages/About.py", label="ℹ️ About")
+page = st.sidebar.radio("Navigation", ["Dashboard", "About"])
 
-#The 2nd page
-st.set_page_config(page_title="ℹ️ About", page_icon="ℹ️")
+if page == "Dashboard":
+    st.title("📊 Dashboard")
+    st.write("Dashboard content here...")
 
-st.set_page_config(page_title="ℹ️ About", page_icon="ℹ️")
-st.title("ℹ️ About Page")
-
-# Link back to Dashboard
-st.page_link("Dashboard.py", label="🏠 Dashboard")
+elif page == "About":
+    st.title("ℹ️ About")
+    st.write("About content here...")
 
 # # Page information
 
