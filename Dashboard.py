@@ -24,23 +24,23 @@ import plotly.express as px
 
 st.title("♂️ Stroke Risk by Gender ♀️")
 
-
 #Synthetic data set
 np.random.seed(42)
 df = pd.DataFrame({
+    "patient_id": range(1, 501),
     "gender": np.random.choice(["Male","Female"], 500),
     "stroke": np.random.binomial(1, 0.1, 500)
 })
 
-#Calculating the risk for stroke between genders
-risk = df.groupby("gender")["stroke"].mean().reset_index()  # 0-1 proportion
+#Calculating the risk of stroke between gender
+risk = df.groupby("gender")["stroke"].mean().reset_index()
 risk["stroke_percent"] = (risk["stroke"]*100).round(1)
 
-#Full data set
-st.subheader("Stroke Risk Data")
-st.table(risk[["gender","stroke_percent"]])  # st.table shows full data without scroll
+#The full dataset
+st.subheader("Full Synthetic Dataset")
+st.dataframe(df, height=300)  # scrollable table with fixed height
 
-#Chart
+#The results in a chart
 colors = {"Male":"blue","Female":"red"}
 fig = px.bar(
     risk,
