@@ -58,3 +58,15 @@ df["stroke"] = np.random.binomial(1, np.clip(prob_stroke, 0, 1))
 print(df.head())
 
 #Showing the data
+st.set_page_config(page_title="Stroke Risk by Gender", page_icon="🫀")
+st.title("Stroke Risk by Gender")
+
+#Grouping up the gender to calculate the stroke probability
+risk_by_gender = df.groupby("gender")["stroke"].mean().reset_index()
+risk_by_gender["stroke"] = risk_by_gender["stroke"] * 100  #Convert to percent
+
+st.subheader("Percentage of patients who had a stroke by gender")
+st.bar_chart(data=risk_by_gender.set_index("gender")["stroke"])
+
+st.subheader("Data table")
+st.dataframe(risk_by_gender)
