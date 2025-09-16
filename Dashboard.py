@@ -7,7 +7,8 @@ st.set_page_config(
 
 # Sidebar configuration
 st.sidebar.image("./assets/project-logo.jpg",)
-st.sidebar.success("Select a tab above.")
+#Widget 1: Adding a button that would take the user to the 2nd page "About"
+st.sidebar.button("About")
 
 # # Page information
 
@@ -43,7 +44,7 @@ df_display["Stroke"] = df_display["Stroke"].map({0: "No", 1: "Yes"})
 st.subheader("Full Synthetic Dataset")
 st.dataframe(df_display, height=300)
 
-# Widget 1: Gives the user the ability to scroll through both or one gender at a time
+# Widget 2: Gives the user the ability to scroll through both or one gender at a time
 gender = st.radio(
     "Choose Gender",
     ["Both", "Male", "Female"],
