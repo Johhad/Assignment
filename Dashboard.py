@@ -24,38 +24,39 @@ import plotly.express as px
 
 st.title("♂️ Stroke Risk by Gender ♀️")
 
-import plotly.express as px
-
-st.title("Stroke Risk by Gender")
-
-#Synthetic data set
+#Synthetic dataset
 np.random.seed(42)
 df = pd.DataFrame({
-    "Gender": np.random.choice(["Male","Female"], 500),
-    "Stroke": np.random.binomial(1, 0.1, 500)
+    "gender": np.random.choice(["Male","Female"], 500),
+    "stroke": np.random.binomial(1, 0.1, 500)
 })
 
-#Calculating the stroke risk between the genders
-risk = df.groupby("Gender")["Stroke"].mean().reset_index()  # keep 0-1
+#Calculatin stroke risk between genders
+risk = df.groupby("gender")["stroke"].mean().reset_index()  # 0-1 proportion
 
-#Shows teh data table
+#Data table
 st.subheader("Stroke Risk Data")
-st.dataframe(risk.assign(stroke_percent=(risk["Stroke"]*100).round(1)))
+st.dataframe(risk.assign(stroke_percent=(risk["stroke"]*100).round(1)))
 
 #The chart
 colors = {"Male":"blue","Female":"red"}
-fig = px.bar(risk, x="Gender", y="Stroke", color="Gender",
-             color_discrete_map=colors,
-             text=risk["Stroke"].round(3))
+fig = px.bar(
+    risk,
+    x="gender",
+    y="stroke",
+    color="gender",
+    color_discrete_map=colors,
+    text=(risk["stroke"]*100).round(1)
+)
 fig.update_layout(
     yaxis_title="Stroke Risk (%)",
-    yaxis_tickformat="%",
+    yaxis_tickformat="%",  # axis shows percentages
     showlegend=False
 )
 fig.update_traces(texttemplate="%{text:.1f}%")
 st.plotly_chart(fig, use_container_width=True)
 
-#The final results
-max_risk = risk.loc[risk["Stroke"].idxmax()]
+#Final Result
+max_risk = risk.loc[risk["stroke"].idxmax()]
 st.subheader("Final Result")
-st.info(f"Highest stroke risk: {max_risk['Gender']} ({max_risk['Stroke']*100:.1f}%)")
+st.info(f"Highest stroke risk: {max_risk['gender']} ({max_risk['stroke']*100:.1f}%)")
