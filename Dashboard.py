@@ -27,26 +27,29 @@ st.title("♂️ Stroke Risk by Gender ♀️")
 #Synthetic data set
 np.random.seed(42)
 df = pd.DataFrame({
-    "patient_id": range(1, 501),
-    "gender": np.random.choice(["Male","Female"], 500),
-    "stroke": np.random.binomial(1, 0.1, 500)
+    "PatientID": range(1, 501),
+    "Gender": np.random.choice(["Male","Female"], 500),
+    "Stroke": np.random.binomial(1, 0.1, 500)
 })
 
 #Calculating the risk of stroke between gender
-risk = df.groupby("gender")["stroke"].mean().reset_index()
-risk["stroke_percent"] = (risk["stroke"]*100).round(1)
+risk = df.groupby("Gender")["Stroke"].mean().reset_index()
+risk["stroke_percent"] = (risk["Stroke"]*100).round(1)
+
+df_display = df.copy()
+df_display["Stroke"] = df_display["Stroke"].map({0: "No", 1: "Yes"})
 
 #The full dataset
 st.subheader("Full Synthetic Dataset")
-st.dataframe(df, height=300)  # scrollable table with fixed height
+st.dataframe(df, height=300)
 
 #The results in a chart
 colors = {"Male":"blue","Female":"red"}
 fig = px.bar(
     risk,
-    x="gender",
-    y="stroke",
-    color="gender",
+    x="Gender",
+    y="Stroke",
+    color="Gender",
     color_discrete_map=colors,
     text=risk["stroke_percent"]
 )
