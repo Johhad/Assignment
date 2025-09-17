@@ -1,9 +1,6 @@
 # PROHI Dashboard Example
 
 **Author**: [Johannes Haddad]
-<!-- As main author, do not write anything in the line below.
-The collaborator will edit the line below in GitHub -->
-**Collaborator**:Isha Bhansali
 
 _Note that this file is written in **MarkDown** language. A reference is available here: <https://www.markdownguide.org/basic-syntax/>_
 
@@ -54,9 +51,7 @@ Tested on Python 3.12.7 with the following packages:
   - Scikit-Learn v1.7.0
   - shap v0.48.0
 
-## Contributors
-
- Dashboard author: Johannes Haddad
+Dashboard author: Johannes Haddad
 
 URL Link to my Dasboard for Assignment 2: 
 
