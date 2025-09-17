@@ -6,7 +6,7 @@ st.set_page_config(
 )
 
 # Sidebar configuration
-st.sidebar.image("./assets/project-logo.jpg",)
+st.sidebar.image("Images/stroke_gender.png", caption="Stroke & Gender Project", use_column_width=True)
 #Widget 1: Adding a button that would take the user to the 2nd page "About"
 st.sidebar.button(" About the Dashboard 💡 ")
 
