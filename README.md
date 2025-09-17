@@ -56,4 +56,10 @@ Tested on Python 3.12.7 with the following packages:
 
 ## Contributors
 
-_Add the project's authors, contact information, and links to websites or portfolios._
+ Dashboard author: Johannes Haddad
+
+URL Link to my Dasboard for Assignment 2: 
+
+This dashboard is made from a synthetic data set. The goal was to make a simple dashboard that displays the risk of stroke between male and female. I added the data set and made it clearer to show the user which patient, by ID, who had a stroke and not. The chart shows the percentage result of which gender had the highest risk of stroke. At the end, I added a "final result" that showed the gender with the highest risk for stroke
+
+For my widgets, I added a button that would function as a link to the "About" page. I added option for the data set to allow the user to only focus on one gender or both, as well as a rating system that the user could use to allow me gain some feedback. 
